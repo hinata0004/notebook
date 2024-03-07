@@ -6,13 +6,16 @@ const book = {
     author: "ミヒャエル・エンデ",
     date: "2024-03-07",
     ganre: "童話"
-} 
+}
 
 const Scroll = () => {
     return (
-        <ScrollArea className="h-72 w-48 rounded-md border">
-            <div className="p-4">
-                <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+        <ScrollArea className="w-4/5 flex justify-center items-center rounded-md border">
+            <div className="p-4 flex gap-4  flex-col">
+                <Book book={book}/>
+                <Book book={book}/>
+                <Book book={book}/>
+                <Book book={book}/>
                 <Book book={book}/>
             </div>
         </ScrollArea>
