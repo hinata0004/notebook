@@ -7,7 +7,6 @@ import {
     CardTitle,
   } from "@/components/ui/card"
   import { Word as WordType } from "@/types/Book"
-  import { Button } from "@/components/ui/button"
   import WordEditDialog from "./Word-EditDialog"
   import DeleteWordButton from "./Delete-WordButton"
   

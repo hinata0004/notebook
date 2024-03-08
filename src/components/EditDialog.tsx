@@ -9,10 +9,8 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { DatePicker } from "./ui/date-picker"
 
 import {
     Dialog,
@@ -48,7 +46,7 @@ const EditDialog = ({book}: {book: Book}) => {
         id: book.id,
         ...values
       }
-      const result = await fetch("http://localhost:8000/api/book", {
+      const result = await fetch("https://93a4-131-206-225-158.ngrok-free.app/api/book", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json"

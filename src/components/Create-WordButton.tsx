@@ -9,11 +9,8 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { DatePicker } from "./ui/date-picker"
-import { useNavigate } from "react-router-dom"
 import {
     Dialog,
     DialogContent,
@@ -23,7 +20,6 @@ import {
   } from "@/components/ui/dialog"
 
 const CreateWordButton = ({id}: {id: string}) => {
-    const navigate = useNavigate()
     const formSchema = z.object({
       word: z.string().min(2).max(50),
       read: z.string(),
@@ -40,7 +36,7 @@ const CreateWordButton = ({id}: {id: string}) => {
         book_id: id,
         ...values
       }
-      const result = await fetch("http://localhost:8000/api/word", {
+      const result = await fetch("https://93a4-131-206-225-158.ngrok-free.app/api/word", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

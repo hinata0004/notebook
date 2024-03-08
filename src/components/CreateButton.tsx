@@ -9,11 +9,8 @@ import {
     FormField,
     FormItem,
     FormLabel,
-    FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { DatePicker } from "./ui/date-picker"
-import { useNavigate } from "react-router-dom"
 import {
     Dialog,
     DialogContent,
@@ -23,7 +20,6 @@ import {
   } from "@/components/ui/dialog"
 
 const EditDialog = () => {
-    const navigate = useNavigate()
     const formSchema = z.object({
       title: z.string().min(2).max(50),
       author: z.string(),
@@ -36,7 +32,7 @@ const EditDialog = () => {
     })
 
     const CreateBook = async (body: z.infer<typeof formSchema>) => {
-      const result = await fetch("http://localhost:8000/api/book", {
+      const result = await fetch("https://93a4-131-206-225-158.ngrok-free.app/api/book", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

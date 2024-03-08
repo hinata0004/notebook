@@ -12,7 +12,6 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { DatePicker } from "./ui/date-picker"
 
 import {
     Dialog,
@@ -60,7 +59,7 @@ const EditDialog = () => {
               </FormControl>
               <FormLabel>読了日</FormLabel>
               <FormControl>
-                <DatePicker />
+                <Input placeholder="2024-03-03" {...field}/>
               </FormControl>
               <FormLabel>ジャンル</FormLabel>
               <FormControl>
