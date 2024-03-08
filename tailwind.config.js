@@ -15,6 +15,12 @@ module.exports = {
       screens: {
         "2xl": "1400px",
       },
+    fontFamily:{
+      body:[
+        'メイリオ'
+      ]
+    }
+
     },
     extend: {
       colors: {
