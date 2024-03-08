@@ -1,49 +1,45 @@
 import { Button } from "@/components/ui/button"
-import Scroll from "../Scroll"
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
 
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
+    Form,
+    FormControl,
+    FormField,
+    FormItem,
+    FormLabel,
+    FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { DatePicker } from "../ui/date-picker"
+import { DatePicker } from "./ui/date-picker"
 
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog"
 
-export default function Root() {
-  const formSchema = z.object({
-    username: z.string().min(2).max(50),
-  })
+const NewDialog = () => {
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      username: "",
-    },
-  })
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values)
-  }
+    const formSchema = z.object({
+        username: z.string().min(2).max(50),
+    })
 
-  return (
-    <div className="text-center">
-      <h1 className=" text-5xl font-bold mt-10">読書ノート</h1>
-
-      <Dialog>
-        <DialogTrigger asChild><Button className="m-5">追加</Button></DialogTrigger>
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
+        defaultValues: {
+            username: "",
+        },
+    })
+    function onSubmit(values: z.infer<typeof formSchema>) {
+        console.log(values)
+    }
+    return (
+        <Dialog>
+        <DialogTrigger asChild><Button variant="outline" className="w-32">追加</Button></DialogTrigger>
         <DialogContent>
           <DialogHeader>
             <DialogTitle className="text-center">新しい本</DialogTitle>
@@ -84,10 +80,7 @@ export default function Root() {
           </DialogHeader>
         </DialogContent>
       </Dialog>
-
-      <div className=" text-center flex justify-center">
-        <Scroll />
-      </div>
-    </div>
-  )
+    )
 }
+
+export default NewDialog
