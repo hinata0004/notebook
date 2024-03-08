@@ -14,3 +14,7 @@ export type Word = {
     pageNum: string
     example: string
 }
+
+export type Select = {
+    select: string
+}
