@@ -20,14 +20,12 @@ const Book = ({book}: {book: BookType}) => {
   return (
     <div>
       <Card className="flex flex-row">
-        <Link to={`/${book.id}`} className="flex items-center justify-center flex-col w-full   bg-teal-300">
-        <CardHeader>
-          <CardTitle 
-          className={`text-3xl font-bold text-center ${isHovered ? 'underline' : ''}`}
+        <Link to={`/${book.id}`} className={`flex items-center justify-center flex-col w-full bg-teal-300 ${isHovered ? 'bg-teal-300' : 'bg-teal-400'}`}
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
-          style={{ transition: 'transform 0.3s ease-in-out', transform: isHovered ? 'scale(1.1)' : 'scale(1)' }}
-          >{book.title}</CardTitle>
+          style={{ transition: 'transform 0.3s ease-in-out', transform: isHovered ? 'scale(1.05)' : 'scale(1)' }}>
+        <CardHeader>
+          <CardTitle className={"text-3xl font-bold"}>{book.title}</CardTitle>
           <CardDescription>{book.author}</CardDescription>
         </CardHeader>
         <CardContent>
