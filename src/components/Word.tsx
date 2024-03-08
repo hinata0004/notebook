@@ -9,6 +9,7 @@ import {
   import { Word as WordType } from "@/types/Book"
   import { Button } from "@/components/ui/button"
   import WordEditDialog from "./Word-EditDialog"
+  import DeleteWordButton from "./Delete-WordButton"
   
   
   const Word = ({word}: {word: WordType}) => {
@@ -21,7 +22,7 @@ import {
             <CardDescription>{word.read}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>ページ数：{word.pageNum}</p>
+            <p>ページ数：{word.page_num}</p>
           </CardContent>
           <CardFooter>
             <p>
@@ -32,7 +33,7 @@ import {
   
           <div className="flex flex-col gap-4 justify-center items-center w-full bg-green-50">
           <WordEditDialog word={word}/>
-          <Button variant="outline" className="w-32">削除</Button>
+          <DeleteWordButton id={word.id}/>
           </div>
         </Card>
       </div>

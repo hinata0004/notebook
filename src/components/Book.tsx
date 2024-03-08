@@ -33,14 +33,14 @@ const Book = ({book}: {book: BookType}) => {
         </CardContent>
         <CardFooter>
           <p>
-            {book.ganre}
+            {book.genre}
           </p>
         </CardFooter>
         </Link>
 
         <div className="flex flex-col gap-4 justify-center items-center w-full bg-teal-100">
         <EditDialog book={book}/>
-        <DeleteButton />
+        <DeleteButton id={book.id}/>
         </div>
       </Card>
     </div>

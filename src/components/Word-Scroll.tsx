@@ -1,6 +1,8 @@
 import { ScrollArea } from "@/components/ui/scroll-area"
 import Word from "./Word"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { Word as WordType, WordsResponse } from "@/types/Book"
+
 
 const DemoWords = [
     {
@@ -29,8 +31,21 @@ const DemoWords = [
     },
 ]
 
-const WordScroll = () => {
-    const [words, setWords] = useState(DemoWords)
+const WordScroll = ({id}: {id: string}) => {
+    const [words, setWords] = useState<WordType[]>([])
+    useEffect(() => {
+        async function FetchWordData() {
+            const result = await fetch(`http://localhost:8000/api/words/${id}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                }
+            })
+            const data: WordsResponse = await result.json()
+            setWords(data.words)
+        }
+        FetchWordData()
+    }, [])
     return (
         <ScrollArea className="w-4/5 flex justify-center items-center rounded-md border">
             <div className="p-4 flex gap-4  flex-col">

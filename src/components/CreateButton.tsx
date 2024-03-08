@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { DatePicker } from "./ui/date-picker"
-
+import { useNavigate } from "react-router-dom"
 import {
     Dialog,
     DialogContent,
@@ -23,19 +23,35 @@ import {
   } from "@/components/ui/dialog"
 
 const EditDialog = () => {
-
+    const navigate = useNavigate()
     const formSchema = z.object({
-        username: z.string().min(2).max(50),
+      title: z.string().min(2).max(50),
+      author: z.string(),
+      date: z.string(),
+      genre: z.string()
     })
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            username: "",
-        },
     })
+
+    const CreateBook = async (body: z.infer<typeof formSchema>) => {
+      const result = await fetch("http://localhost:8000/api/book", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body)
+      })
+      if (result.status !== 200) {
+        alert("作成に失敗しました")
+      }
+      window.location.href = "/"
+    }
+
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)
+        CreateBook(values)
     }
     return (
         <Dialog>
@@ -45,28 +61,54 @@ const EditDialog = () => {
             <DialogTitle className="text-center">新しい本</DialogTitle>
             <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+      <FormField
           control={form.control}
-          name="username"
+          name="title"
           render={({ field }) => (
             <FormItem>
               <FormLabel>本の名前</FormLabel>
               <FormControl>
-                <Input placeholder="モモ" {...field} />
+                <Input {...field} placeholder="モモ" />
               </FormControl>
+            </FormItem>
+
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="author"
+          render={({ field }) => (
+            <FormItem>
               <FormLabel>著者</FormLabel>
               <FormControl>
-                <Input placeholder="ミヒャエル・エンデ" {...field} />
+                <Input {...field} placeholder="ミヒャエル・エンデ"/>
               </FormControl>
+            </FormItem>
+
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="date"
+          render={({ field }) => (
+            <FormItem>
               <FormLabel>読了日</FormLabel>
               <FormControl>
-                <DatePicker />
+                <Input {...field} placeholder="2024-03-08"/>
               </FormControl>
+            </FormItem>
+
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="genre"
+          render={({ field }) => (
+            <FormItem>
               <FormLabel>ジャンル</FormLabel>
               <FormControl>
-                <Input placeholder="童話" {...field} />
+                <Input {...field} placeholder="童話"/>
               </FormControl>
-              <FormMessage />
             </FormItem>
 
           )}

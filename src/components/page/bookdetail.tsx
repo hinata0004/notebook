@@ -22,6 +22,8 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { DatePicker } from "../ui/date-picker"
+import CreateWordButton from "../Create-WordButton";
+
 
 
 export default function Bookdetail(){
@@ -29,8 +31,9 @@ export default function Bookdetail(){
     return (
       <div className="text-center">
         <h1 className=" text-5xl font-bold mt-10 mb-10">単語帳</h1>
+        <CreateWordButton id={id!}/>
         <div className=" text-center flex justify-center">
-          <WordScroll />
+          <WordScroll id={id!}/>
         </div>
       </div>
     )

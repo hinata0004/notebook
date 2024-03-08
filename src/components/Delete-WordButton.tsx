@@ -12,7 +12,7 @@ import { Button } from "./ui/button"
 import { useNavigate } from "react-router-dom"
 
 
-const DeleteButton = ({id}: {id: string}) => {
+const DeleteWordButton = ({id}: {id: string}) => {
     const navigate = useNavigate()
     const handleDelete = () =>{
         const isConfirmed = window.confirm("本当に削除しますか？")
@@ -24,7 +24,7 @@ const DeleteButton = ({id}: {id: string}) => {
     }
 
     const deleteItem = async() => {
-        const result = await fetch(`http://localhost:8000/api/book/${id}`, {
+        const result = await fetch(`http://localhost:8000/api/word/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
@@ -40,4 +40,4 @@ const DeleteButton = ({id}: {id: string}) => {
     )
 }
 
-export default DeleteButton
+export default DeleteWordButton

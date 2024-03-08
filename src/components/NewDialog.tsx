@@ -24,14 +24,21 @@ import {
 
 const NewDialog = () => {
 
-    const formSchema = z.object({
-        username: z.string().min(2).max(50),
-    })
+  const formSchema = z.object({
+    title: z.string().min(2).max(50),
+    author: z.string(),
+    date: z.string(),
+    ganre: z.string()
+})
+
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
-            username: "",
+            title: "",
+            author: "",
+            date: "",
+            ganre: ""
         },
     })
     function onSubmit(values: z.infer<typeof formSchema>) {
@@ -45,28 +52,54 @@ const NewDialog = () => {
             <DialogTitle className="text-center">新しい本</DialogTitle>
             <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+      <FormField
           control={form.control}
-          name="username"
+          name="title"
           render={({ field }) => (
             <FormItem>
               <FormLabel>本の名前</FormLabel>
               <FormControl>
-                <Input placeholder="モモ" {...field} />
+                <Input {...field} />
               </FormControl>
+            </FormItem>
+
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="author"
+          render={({ field }) => (
+            <FormItem>
               <FormLabel>著者</FormLabel>
               <FormControl>
-                <Input placeholder="ミヒャエル・エンデ" {...field} />
+                <Input {...field} />
               </FormControl>
+            </FormItem>
+
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="date"
+          render={({ field }) => (
+            <FormItem>
               <FormLabel>読了日</FormLabel>
               <FormControl>
-                <DatePicker />
+                <Input {...field} />
               </FormControl>
+            </FormItem>
+
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="ganre"
+          render={({ field }) => (
+            <FormItem>
               <FormLabel>ジャンル</FormLabel>
               <FormControl>
-                <Input placeholder="童話" {...field} />
+                <Input {...field} />
               </FormControl>
-              <FormMessage />
             </FormItem>
 
           )}

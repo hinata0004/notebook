@@ -3,7 +3,7 @@ export type Book = {
     title: string
     author: string
     date: string
-    ganre: string
+    genre: string
 }
 
 export type Word = {
@@ -11,10 +11,14 @@ export type Word = {
     id: string
     word: string
     read: string
-    pageNum: string
+    page_num: string
     example: string
 }
 
-export type Select = {
-    select: string
+export type BooksResponse = {
+    books: Book[]
+}
+
+export type WordsResponse = {
+    words: Word[]
 }

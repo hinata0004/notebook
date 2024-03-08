@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { DatePicker } from "./ui/date-picker"
-
+import { useNavigate } from "react-router-dom"
 import {
     Dialog,
     DialogContent,
@@ -22,67 +22,58 @@ import {
     DialogTrigger,
   } from "@/components/ui/dialog"
 
-import { Book } from "@/types/Book"
-
-const EditDialog = ({book}: {book: Book}) => {
-
+const CreateWordButton = ({id}: {id: string}) => {
+    const navigate = useNavigate()
     const formSchema = z.object({
-        title: z.string().min(2).max(50),
-        author: z.string(),
-        date: z.string(),
-        genre: z.string()
+      word: z.string().min(2).max(50),
+      read: z.string(),
+      page_num: z.string(),
+      example: z.string()
     })
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
-        defaultValues: {
-            title: book.title,
-            author: book.author,
-            date: book.date,
-            genre: book.genre
-        },
     })
 
-    const UpdateBook = async(values: z.infer<typeof formSchema>) => {
+    const CreateWord = async (values: z.infer<typeof formSchema>) => {
       const body = {
-        id: book.id,
+        book_id: id,
         ...values
       }
-      const result = await fetch("http://localhost:8000/api/book", {
-        method: "PUT",
+      const result = await fetch("http://localhost:8000/api/word", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body)
       })
-
-      if(result.status !== 200) {
-        alert("更新に失敗しました")
+      if (result.status !== 200) {
+        alert("作成に失敗しました")
       }
-
       window.location.href = "/"
     }
 
     function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)
-        UpdateBook(values)
+        console.log(values)
+        CreateWord(values)
     }
     return (
         <Dialog>
-        <DialogTrigger asChild><Button variant="outline" className="w-32">編集</Button></DialogTrigger>
+        <DialogTrigger asChild><Button className="m-5">追加</Button></DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-center">新しい本</DialogTitle>
+            <DialogTitle className="text-center">新しい語句</DialogTitle>
             <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <FormField
+      <FormField
           control={form.control}
-          name="title"
+          name="word"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>本の名前</FormLabel>
+              <FormLabel>語句</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="学校" />
               </FormControl>
             </FormItem>
 
@@ -90,12 +81,12 @@ const EditDialog = ({book}: {book: Book}) => {
         />
         <FormField
           control={form.control}
-          name="author"
+          name="read"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>著者</FormLabel>
+              <FormLabel>読み</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="がっこう"/>
               </FormControl>
             </FormItem>
 
@@ -103,12 +94,12 @@ const EditDialog = ({book}: {book: Book}) => {
         />
         <FormField
           control={form.control}
-          name="date"
+          name="page_num"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>読了日</FormLabel>
+              <FormLabel>ページ数</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="120"/>
               </FormControl>
             </FormItem>
 
@@ -116,19 +107,19 @@ const EditDialog = ({book}: {book: Book}) => {
         />
         <FormField
           control={form.control}
-          name="genre"
+          name="example"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>ジャンル</FormLabel>
+              <FormLabel>意味</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Input {...field} placeholder="教育を施すところ"/>
               </FormControl>
             </FormItem>
 
           )}
         />
         <div className="flex justify-center">
-          <Button type="submit">編集</Button>
+        <Button type="submit">追加</Button>
         </div>
       </form>
     </Form>
@@ -139,4 +130,4 @@ const EditDialog = ({book}: {book: Book}) => {
     )
 }
 
-export default EditDialog
+export default CreateWordButton
