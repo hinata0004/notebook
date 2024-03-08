@@ -7,7 +7,7 @@ const Scroll = () => {
     const [books, setBooks] = useState<BookType[]>([])
     useEffect(() => {
         async function FetchBookData() {
-            const result = await fetch("http://localhost:8000/api/books", {
+            const result = await fetch("https://93a4-131-206-225-158.ngrok-free.app/api/books", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

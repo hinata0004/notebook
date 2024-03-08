@@ -41,7 +41,7 @@ const WordEditDialog = ({word}: {word: Word}) => {
   })
 
   const CreateWord = async (values: z.infer<typeof formSchema>) => {
-    const result = await fetch(`http://localhost:8000/api/word/${word.id}`, {
+    const result = await fetch(`https://93a4-131-206-225-158.ngrok-free.app/api/word/${word.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

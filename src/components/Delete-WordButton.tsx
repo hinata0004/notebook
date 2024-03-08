@@ -1,19 +1,6 @@
-import {
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogHeader,
-    DialogTitle,
-    DialogTrigger,
-} from "@/components/ui/dialog"
-
 import { Button } from "./ui/button"
 
-import { useNavigate } from "react-router-dom"
-
-
 const DeleteWordButton = ({id}: {id: string}) => {
-    const navigate = useNavigate()
     const handleDelete = () =>{
         const isConfirmed = window.confirm("本当に削除しますか？")
 
@@ -24,7 +11,7 @@ const DeleteWordButton = ({id}: {id: string}) => {
     }
 
     const deleteItem = async() => {
-        const result = await fetch(`http://localhost:8000/api/word/${id}`, {
+        const result = await fetch(`https://93a4-131-206-225-158.ngrok-free.app/api/word/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"

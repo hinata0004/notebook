@@ -7,7 +7,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Book as BookType } from "@/types/Book"
-import { Button } from "@/components/ui/button"
 import EditDialog from "./EditDialog"
 import { Link } from "react-router-dom"
 import DeleteButton from "./DeleteButton"

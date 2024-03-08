@@ -3,39 +3,11 @@ import Word from "./Word"
 import { useState, useEffect } from "react"
 import { Word as WordType, WordsResponse } from "@/types/Book"
 
-
-const DemoWords = [
-    {
-        id: "1",
-        word: "綯い交ぜ",
-        read: "ないまぜ",
-        pageNum: "120",
-        example: "色々なものを混ぜ合わせて一緒にすること",
-        bookId: "1"
-    },
-    {
-        id: "2",
-        word: "燦然",
-        read: "さんぜん",
-        pageNum: "121",
-        example: "きらきらと光り輝くさま",
-        bookId: "1"
-    },
-    {
-        id: "3",
-        word: "歯の根が合わない",
-        read: "はのねがあわない",
-        pageNum: "122",
-        example: "怖さで歯が鳴るほど震えること",
-        bookId: "1"
-    },
-]
-
 const WordScroll = ({id}: {id: string}) => {
     const [words, setWords] = useState<WordType[]>([])
     useEffect(() => {
         async function FetchWordData() {
-            const result = await fetch(`http://localhost:8000/api/words/${id}`, {
+            const result = await fetch(`https://93a4-131-206-225-158.ngrok-free.app/api/words/${id}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
