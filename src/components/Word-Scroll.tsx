@@ -11,6 +11,7 @@ const WordScroll = ({id}: {id: string}) => {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
+                    "ngrok-skip-browser-warning": "1"
                 }
             })
             const data: WordsResponse = await result.json()

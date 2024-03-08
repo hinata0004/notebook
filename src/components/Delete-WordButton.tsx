@@ -14,7 +14,8 @@ const DeleteWordButton = ({id}: {id: string}) => {
         const result = await fetch(`https://93a4-131-206-225-158.ngrok-free.app/api/word/${id}`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "1"
             }
         })
         if (result.status !== 200) {

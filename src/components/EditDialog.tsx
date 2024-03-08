@@ -49,7 +49,8 @@ const EditDialog = ({book}: {book: Book}) => {
       const result = await fetch("https://93a4-131-206-225-158.ngrok-free.app/api/book", {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "1"
         },
         body: JSON.stringify(body)
       })
